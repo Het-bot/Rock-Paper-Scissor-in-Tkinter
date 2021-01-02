@@ -1,0 +1,1204 @@
+import tkinter as tk
+from tkinter.ttk import *
+from tkinter import *
+import time
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure 
+
+  
+c_s=0
+c_m=0
+i_s=0
+i_m=0
+n_s=0
+n_m=0
+score_s=0
+score_m=0
+m=tk.Tk()
+m.configure (background="deep sky blue")
+l1=Label(m,text="Quiz",font=('dancing script',70),bg="deep sky blue")
+l1.pack()  
+
+def next(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,):
+    l1.destroy()
+    b1.destroy()
+    l2=Label(m, text=" Enter the following details",font=('Times New Roman',13),bg="deep sky blue")
+    l2.pack()
+    l3=Label(m,text='Name  ',font=('Times New Roman',10),bg="deep sky blue")
+    l3.place(x=20,y=200)
+    name=Entry(m,font=('Times New Roman',8))
+    name.place(x=350,y=200)
+
+    l4=Label(m, text="Age",font=('Times New Roman',10),bg="deep sky blue")
+    l4.place(x=20,y=400)
+    age= Scale(m, from_=7,to=100,orient=HORIZONTAL,font=('Times New Roman',8),bg="deep sky blue")
+    age.place(x=350,y=360)
+    l5=Label(m,text="Gender",font=('Times New Roman',10),bg="deep sky blue")
+    l5.place(x=20,y=600)
+    v= StringVar(m)  
+    r1=Radiobutton(m,text ="Male",variable=v,value = "M",font=('Times New Roman',8),bg="deep sky blue",activebackground="deep sky blue")
+    r1.place(x=350,y=600)
+    r2=Radiobutton(m,text ="Female",variable=v,value = "F",font=('Times New Roman',8),bg="deep sky blue",activebackground="deep sky blue")
+    r2.place(x=600, y=600)
+    
+        
+    def submit(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m):
+        
+        nname=name.get()
+        aage=int(age.get())
+        gender=str(v.get())
+        l2.destroy()
+        l3.destroy()
+        l4.destroy()
+        l5.destroy()
+        name.destroy()
+        age.destroy()
+        r1.destroy()
+        r2.destroy()
+        b2.destroy()
+        b3.destroy()
+        
+        l6=Label(m,text="Instructions",font=('Times New Roman',12),bg="deep sky blue")
+        l6.pack()
+        inst= '''★ This Quiz contains 10 questions 
+★ 5 single correct and 5 multiple correct questions.
+★ For each correct question score of +4 will be awarded.
+★ For each incorrect question score of -1 will be awarded.
+★ No score for not attempt.
+★ No partial marking for multiple correct questions.
+'''
+        l7=Label(m,text=inst,font=("Coming Soon",8),bg="deep sky blue")
+        l7.pack()
+        
+        def start(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m):
+            l6.destroy()
+            l7.destroy()
+            b4.destroy()
+            
+            l8=Label(m,text = "Single Correct",font=('Times New Roman',13),bg="deep sky blue")
+            l8.pack()
+            l9=Label(m,text ="Question 1",font=('Times New Roman',10),bg="deep sky blue")
+            l9.pack()
+            l10=Label(m,text="What is the output of the following code:-",font=('Times New Roman',8),bg="deep sky blue")
+            l10.pack()
+            l=Label(m,text='''>>> a = "7"
+       >>> a = a + "0"
+          >>> b = int(a)+3
+             >>> print(float(b))''',font=('Times New Roman',8),bg="deep sky blue")
+            l.place(x=40,y=300)
+    
+            v1= StringVar(m) 
+            r3 =Radiobutton(m,text ="703",variable=v1,value = 1,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+            r3.place (x=300,y=600)
+            r4 =Radiobutton(m,text ="73.0",variable=v1,value = 2,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+            r4.place(x=300,y=670)
+            r5 =Radiobutton(m,text ="103",variable=v1,value = 3,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+            r5.place (x=300,y=740)
+            r6 =Radiobutton(m,text ="10.0",variable=v1,value = 4,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+            r6.place (x=300,y=810)
+            r7 =Radiobutton(m,text="E",variable=v1,value=5,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+            r7.place (x=300,y=880)
+
+
+                    
+            def submit1(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m):
+                a1=str(v1.get())
+                if a1=="2":
+                    score_s+=4
+                    clr_fg_1="green2"
+                    c_s+=1
+                elif a1=="" or a1=="5":
+                    score_s+=0
+                    n_s+=1
+                    clr_fg_1="gray73"
+                    a1="N.A."
+
+                else:
+                    score_s-=1
+                    i_s+=1
+                    clr_fg_1="orangered"
+                if a1=="1":
+                    a1="A"
+                elif a1=="2":
+                    a1="B"
+                elif a1=="3":
+                    a1="C"
+                elif a1=="4" :
+                        a1="D"
+                else:
+                    a1="N.A."
+                    
+                l.destroy()                                                       
+                l7.destroy()
+                l9.destroy()
+                l10.destroy()
+                b5.destroy()
+                r3.destroy()
+                r4.destroy()
+                r5.destroy()
+                r6.destroy()
+                r7.destroy()
+                l11 =Label(m,text ="Question 2",font=('Times New Roman',10),bg="deep sky blue")
+                l11.pack()
+
+                l12 =Label(m,text="What is the output of the code:",font=('Times New Roman',8),bg="deep sky blue")
+                l12.pack()
+                q2a =Label(m,text="def shout(word):",bg="deep sky blue")
+                q2a.place(x=250,y=300)
+                q2b = Label(m,text='        return word + "!"',bg="deep sky blue")
+                q2b.place(x=250, y=360)
+                q2c=Label(m,text='speak = shout',bg="deep sky blue")
+                q2c.place(x=250,y=420)
+                q2d= Label(m,text='output = speak("shout")',bg="deep sky blue")
+                q2d.place(x=250,y=480)
+                q2e =Label(m,text='print(output)',bg="deep sky blue") 
+                q2e.place(x=250,y=540)                  
+                v2= StringVar(m) 
+                r8 =Radiobutton(m,text ="speak!",variable=v2,value = 1,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                r8.place (x=300,y=700)
+                r9 =Radiobutton(m,text ="word!",variable=v2,value = 2,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                r9.place(x=300,y=770)
+                r10 =Radiobutton(m,text ="shout!",variable=v2,value = 3,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                r10.place (x=300,y=840)
+                r11 =Radiobutton(m,text ="ERROR",variable=v2,value = 4,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                r11.place(x=300,y=910)
+                r12 =Radiobutton(m,text ="E",variable=v2,value = 5,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                r12.place(x=300,y=980)
+
+
+                    
+                def submit2(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1):
+                    a2=str(v2.get())
+                    if a2=="3":
+                        score_s+=4
+                        clr_fg_2="green2"
+                        c_s+=1
+                    elif a2=="" or a2=="5":
+                        score_s +=0
+                        n_s+=1
+                        clr_fg_2="gray73"
+                        a2="N.A."
+                    else:
+                        score_s-=1
+                        i_s+=1
+                        clr_fg_2="orangered"
+                    if a2=="1":
+                        a2="A"
+                    elif a2=="2":
+                        a2="B"
+                    elif a2=="3":
+                        a2="C"
+                    elif a2=="4":
+                        a2="D"
+                    else:
+                        a2="N.A."
+                    q2a.destroy()
+                    q2b.destroy()
+                    q2c.destroy() 
+                    q2d.destroy()
+                    q2e.destroy()   
+                        
+                    l11.destroy()
+                    l12.destroy()
+                    b6.destroy()
+                    r8.destroy()
+                    r9.destroy()
+                    r10.destroy()
+                    r11.destroy()
+                    r12.destroy()
+                    
+                    l13 =Label(m,text="Question 3 ",font=('Times New Roman',10),bg="deep sky blue")
+                    l14 =Label(m,text ="What error is caused by importing unknown module?",font=('Times New Roman',8),bg="deep sky blue")
+                    l13.pack()
+
+                    l14.pack()
+                    v3= StringVar(m) 
+                    r13 =Radiobutton(m,text ="ImportError",variable=v3,value = 1,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                    r13.place(x=300,y=300)
+                    r14 =Radiobutton(m,text ="UnknownModuleError",variable=v3,value = 2,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                    r14.place(x=300,y=370)
+                    r15 =Radiobutton(m,text ="ModuleError",variable=v3,value =3,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                    r15.place(x=300,y=440)
+                    r16 =Radiobutton(m,text ="ModuleNotFoundError",variable=v3,value = 4,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                    r16.place(x=300,y=510)
+                    r17 =Radiobutton(m,text ="E",variable=v3,value = 5,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                    r17.place(x=300,y=580)
+
+
+                    
+                    def submit3(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2):
+                        a3=str(v3.get())
+                        if a3=="4":
+                            score_s+=4
+                            c_s+=1
+                            clr_fg_3="green2"
+                        elif a3=="" or a3=="5":
+                            score_s +=0
+                            n_s+=1
+                            clr_fg_3="gray73"
+                            a3="N.A."
+                        else:
+                            score_s-=1
+                            i_s+=1
+                            clr_fg_3="orangered"
+                        if a3=="1":
+                            a3="A"
+                        elif a3=="2":
+                            a3="B"
+                        elif a3=="3":
+                            a3="C"
+                        elif a3=="4":
+                            a3="D"
+                        else :
+                            a3="N.A."
+            
+                            
+                        l13.destroy()
+                        l14.destroy()
+                        b7.destroy()
+                        r13.destroy()
+                        r14.destroy()
+                        r15.destroy()
+                        r16.destroy()
+                        r17.destroy()
+                        l15 =Label(m,text ="Question 4",font=('Times New Roman',10),bg="deep sky blue")
+                        l15.pack()
+
+                        l16 =Label(m,text="What does PyPI standa for? ",font=('Times New Roman',8),bg="deep sky blue")
+                        l16.pack()
+                        v4= StringVar(m) 
+                        r18 =Radiobutton(m,text ="Python Package Installer",variable=v4,value = 1,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                        r18.place(x=300,y=300)
+                        r19 =Radiobutton(m,text ="Python Package Index",variable=v4,value = 2,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                        r19.place(x=300,y=370)
+                        r20 =Radiobutton(m,text ="Python Project Installer",variable=v4,value = 3,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                        r20.place(x=300,y=440)
+                        r21 =Radiobutton(m,text ="Python Project Index",variable=v4,value = 4,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                        r21.place(x=300,y=510)
+                        r22 =Radiobutton(m,text ="E",variable=v4,value = 5,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                        r22.place(x=300,y=580)
+                    
+                        def submit4(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3):
+                            a4=str(v4.get())
+                            if a4=="2":
+                                score_s+=4
+                                c_s+=1
+                                clr_fg_4="green2"
+                            elif a4=="" or a4=="5" :
+                                score_s +=0
+                                n_s+=1
+                                clr_fg_4="gray73"
+                                a4="N.A."
+                            else:
+                                score_s-=1
+                                i_s+=1
+                                clr_fg_4="orangered"
+                            if a4=="1":
+                                a4="A"
+                            elif a4=="2":
+                                a4="B"
+                            elif a4=="3":
+                                a4="C"
+                            elif a4=="4":
+                                a4="D"
+                            else :
+                                a4="N.A."
+                                                                
+                            l15.destroy()
+                            l16.destroy()
+                            b8.destroy()
+                            r18.destroy()
+                            r19.destroy()
+                            r20.destroy()
+                            r21.destroy()
+                            r22.destroy()
+                            l17=Label(m,text ="Question 5",font=('Times New Roman',10),bg="deep sky blue")
+                            l17.pack()
+                            l18=Label(m,text="What is the result of this code?",font=('Times New Roman',8),bg="deep sky blue")
+                            q5a=Label(m,text="nums=(55,44,33,22)",bg="deep sky blue")
+                            q5b=Label(m,text="print(max(min(nums[:2]),abs(-42)))",bg="deep sky blue")
+                            l18.pack()
+                            q5a.place(x=250,y=300)
+                            q5b.place(x=250,y=360)
+    
+                            v5= StringVar(m) 
+                            r23 =Radiobutton(m,text ="44",variable=v5,value = 1,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                            r23.place(x=300,y=500)
+                            r24 =Radiobutton(m,text ="33",variable=v5,value = 2,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                            r24.place(x=300,y=570)
+                            r25 =Radiobutton(m,text ="42",variable=v5,value = 3,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                            r25.place(x=300,y=640)
+                            r26 =Radiobutton(m,text ="55",variable=v5,value = 4,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                            r26.place(x=300,y=710)
+                            r27 =Radiobutton(m,text ="E",variable=v5,value = 5,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                            r27.place(x=300,y=780)
+                    
+                            def submit5(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4):
+                                a5=str(v5.get())
+                                if a5=="1":
+                                    score_s+=4
+                                    c_s+=1
+                                    clr_fg_5 ="green2"
+                                elif a5=="" or a5=="5" :
+                                    score_s+=0
+                                    n_s+=1
+                                    clr_fg_5="gray73"
+                                    a5="N.A."
+                                else:
+                                    score_s-=1
+                                    i_s+=1
+                                    clr_fg_5="orangered"
+                                if a5=="1":
+                                    a5="A"
+                                elif a5=="2":
+                                    a5="B"
+                                elif a5=="3":
+                                    a5="C"
+                                elif a5=="4":
+                                    a5="D"
+                                else :
+                                    a5="N.A."
+                 
+                                l17.destroy()
+                                l18.destroy()
+                                q5a.destroy()
+                                q5b.destroy()
+                                l8.destroy()
+                                b9.destroy()
+                                r23.destroy()
+                                r24.destroy()
+                                r25.destroy()
+                                r26.destroy()
+                                r27.destroy()
+                                l20= Label(m,text="Multiple Correct",font=('Times New Roman',13),bg="deep sky blue")
+                                l20.pack()
+                                l21 =Label(m,text="Question 6 ",font=('Times New Roman',10),bg="deep sky blue")
+                                l21.pack()
+                                l22= Label(m,text="What could possibly the answers ",font=('Times New Roman',8),bg="deep sky blue")
+                                l=Label(m,text="of the following statement?",bg="deep sky blue")
+                                l22.pack()
+                                l.pack()
+                                q6a=Label(m,text="print (0.1 + 0.2 == 0.3)",bg="deep sky blue")
+                                q6a.place(x=200,y=350)
+                                Checkvar1 = IntVar(m)
+                                c1 = Checkbutton(m, text = "True",variable = Checkvar1, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                c1.place(x=300,y=500)
+
+                                Checkvar2 = IntVar(m)
+                                c2 = Checkbutton(m, text = "False",variable = Checkvar2, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                c2.place(x=300,y=570)
+
+                                Checkvar3 = IntVar(m)
+                                c3 = Checkbutton(m, text = "1",variable = Checkvar3, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                c3.place(x=300,y=640)
+
+                                Checkvar4 = IntVar(m)
+                                c4 = Checkbutton(m, text = "0",variable = Checkvar4, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                c4.place(x=300,y=710)
+
+                
+                                def submit6(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5):
+                                    A6= str(Checkvar1.get())
+                                    B6= str(Checkvar2.get())
+                                    C6= str(Checkvar3.get())
+                                    D6= str(Checkvar4.get())
+
+                                    if (A6=="0" and B6=="1" and C6=="0" and D6=="1"):
+                                        score_m+=4
+                                        c_m+=1
+                                        clr_fg_6 ="green2"        
+                                    elif (A6=="0" and B6=="0" and C6=="0" and D6=="0") :
+                                        score_m+=0
+                                        n_m+=1
+                                        clr_fg_6 ="gray73"
+                                        A6="N.A."
+        
+                                    else:
+                                        score_m-=1
+                                        i_m+=1
+                                        clr_fg_6 ="orangered"
+                                    if A6=="1" and B6=="0" and C6=="0" and D6=="0":
+                                        A6="A"
+                                    elif A6=="0" and B6=="1" and C6=="0" and D6=="0":
+                                        A6="B"
+                                    elif A6=="0" and B6=="0" and C6=="1" and D6=="0":
+                                        A6="C"
+                                    elif A6=="0" and B6=="0" and C6=="0" and D6=="1":
+                                        A6="D"
+                                    elif A6=="1" and B6=="1" and C6=="0" and D6=="0":
+                                        A6="A,B"
+                                    elif A6=="1" and B6=="0" and C6=="1" and D6=="0":
+                                        A6="A,C"
+                                    elif A6=="1" and B6=="0" and C6=="0" and D6=="1":
+                                        A6="A,D"
+                                    elif A6=="0" and B6=="1" and C6=="1" and D6=="0":
+                                        A6="B,C"    
+                                    elif A6=="0" and B6=="1" and C6=="0" and D6=="1":
+                                        A6="B,D"
+                                    elif A6=="0" and B6=="0" and C6=="1" and D6=="1":
+                                        A6="C,D"
+                                    elif A6=="1" and B6=="1" and C6=="1" and D6=="0":
+                                        A6="A,B,C"
+                                    elif A6=="1" and B6=="1" and C6=="0" and D6=="1":
+                                        A6="A,B,D"
+                                    elif A6=="1" and B6=="0" and C6=="1" and D6=="1":
+                                        A6="A,C,D"
+                                    elif A6=="0" and B6=="1" and C6=="1" and D6=="1":
+                                        A6="B,C,D"
+                                    elif A6=="1" and B6=="1" and C6=="1" and D6=="1":
+                                        A6="A,B,C,D"
+                                    else:
+                                        A6="N.A."
+                                
+      
+                                    l21.destroy()
+                                    l22.destroy()
+                                    l.destroy()
+                                    q6a.destroy()
+                                    c1.destroy()
+                                    c2.destroy()
+                                    c3.destroy()
+                                    c4.destroy()
+                                    b10.destroy()
+                                    l23 =Label(m,text="Question 7 ",font=('Times New Roman',10),bg="deep sky blue")
+                                    l23.pack()
+                                    l24= Label(m,text="Which of the following statement(s) is TRUE?",font=('Times New Roman',8),bg="deep sky blue")
+                                    l24.pack()
+                                    q7a=Label(m,text="I. A hash function takes a message of",bg="deep sky blue") 
+                                    q7b=Label(m,text="arbitrary length and generates a fixed length code.",bg="deep sky blue")
+                                    q7c=Label(m,text="II. A hash function takes a message of fixed  ",bg="deep sky blue")
+                                    q7d=Label(m,text="length and generates a code of variable length.",bg="deep sky blue")
+                                    q7e=Label(m,text="III. A hash function may give the same hash ",bg="deep sky blue")
+                                    q7f=Label(m,text="value for distinct messages.",bg="deep sky blue")
+                                    q7a.place(x=150,y=300)                          
+                                    q7b.place(x=280,y=360) 
+                                    q7c.place(x=150,y=420) 
+                                    q7d.place(x=180,y=480) 
+                                    q7e.place(x=150,y=540)
+                                    q7f.place(x=200,y=600)  
+                                    Checkvar5 = IntVar(m)
+                                    c5 = Checkbutton(m, text = "I",variable = Checkvar5, onvalue = 1, offvalue= 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                    c5.place(x=300,y=750)
+
+                                    Checkvar6 = IntVar(m)
+                                    c6 = Checkbutton(m, text = "II",variable = Checkvar6, onvalue = 1, offvalue= 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                    c6.place(x=300,y=820)
+
+                                    Checkvar7 = IntVar(m)
+                                    c7 = Checkbutton(m, text = "III",variable = Checkvar7, onvalue = 1, offvalue= 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                    c7.place(x=300,y=890)
+
+                                    Checkvar8 = IntVar(m)
+                                    c8 = Checkbutton(m, text = "None of the above",variable = Checkvar8, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                    c8.place(x=300,y=960)
+                
+                                    def submit7(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5,clr_fg_6):
+                                        A7= str(Checkvar5.get())
+                                        B7= str(Checkvar6.get())
+                                        C7= str(Checkvar7.get())
+                                        D7= str(Checkvar8.get())
+
+
+                                        if (A7=="1" and B7=="0" and C7=="1" and D7=="0"):
+                                            score_m+=4
+                                            c_m+=1
+                                            clr_fg_7="green2"
+        
+                                        elif (A7=="0" and B7=="0" and C7=="0" and D7=="0") :
+                                            score_m+=0
+                                            n_m+=1
+                                            clr_fg_7="gray73"
+                                            A7="N.A."
+        
+                                        else:
+                                            score_m-=1
+                                            i_m+=1
+                                            clr_fg_7="orangered"
+                                        if A7=="1" and B7=="0" and C7=="0" and D7=="0":
+                                            A7="A"
+                                        elif A7=="0" and B7=="1" and C7=="0" and D7=="0":
+                                            A7="B"
+                                        elif A7=="0" and B7=="0" and C7=="1" and D7=="0":
+                                            A7="C"
+                                        elif A7=="0" and B7=="0" and C7=="0" and D7=="1":
+                                            A7="D"
+                                        elif A7=="1" and B7=="1" and C7=="0" and D7=="0":
+                                            A7="A,B"
+                                        elif A7=="1" and B7=="0" and C7=="1" and D7=="0":
+                                            A7="A,C"
+                                        elif A7=="1" and B7=="0" and C7=="0" and D7=="1":
+                                            A7="A,D"
+                                        elif A7=="0" and B7=="1" and C7=="1" and D7=="0":
+                                            A7="B,C"    
+                                        elif A7=="0" and B7=="1" and C7=="0" and D7=="1":
+                                            A7="B,D"
+                                        elif A7=="0" and B7=="0" and C7=="1" and D7=="1":
+                                            A7="C,D"
+                                        elif A7=="1" and B7=="1" and C7=="1" and D7=="0":
+                                            A7="A,B,C"
+                                        elif A7=="1" and B7=="1" and C7=="0" and D7=="1":
+                                            A7="A,B,D"
+                                        elif A7=="1" and B7=="0" and C7=="1" and D7=="1":
+                                            A7="A,C,D"
+                                        elif A7=="0" and B7=="1" and C7=="1" and D7=="1":
+                                            A7="B,C,D"
+                                        elif A7=="1" and B7=="1" and C7=="1" and D7=="1":
+                                            A7="A,B,C,D"
+                                        else:
+                                            A7="N.A."                          
+                                            
+                                        l23.destroy()
+                                        l24.destroy()
+                                        q7a.destroy()
+                                        q7b.destroy()
+                                        q7c.destroy()
+                                        q7d.destroy()
+                                        q7e.destroy()
+                                        q7f.destroy()
+                                        c5.destroy()
+                                        c6.destroy()
+                                        c7.destroy()
+                                        c8.destroy()
+                                        b11.destroy()
+                                        l25 =Label(m,text="Question 8 ",font=('Times New Roman',10),bg="deep sky blue")
+                                        l25.pack()
+                                        l26= Label(m,text="Which of the following is/are the part of output?",font=('Times New Roman',8),bg="deep sky blue")
+                                        l26.pack()
+                                        q8a=Label(m,text="for i in range(10):",bg="deep sky blue")
+                                        q8b=Label(m,text="    if not i%2==0:",bg="deep sky blue")
+                                        q8c=Label(m,text="        print(i+1)",bg="deep sky blue")
+                                        q8a.place(x=200,y=300)
+                                        q8b.place(x=200,y=360)
+                                        q8c.place(x=200,y=420)
+                                        Checkvar9 = IntVar(m)
+                                        c9 = Checkbutton(m, text = "2",variable = Checkvar9, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                        c9.place(x=300,y=550)
+                                        Checkvar10 = IntVar(m)
+                                        c10 = Checkbutton(m, text = "5",variable = Checkvar10, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                        c10.place(x=300,y=620)
+    
+                                        Checkvar11 = IntVar(m)
+                                        c11 = Checkbutton(m, text = "0",variable = Checkvar11, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                        c11.place(x=300,y=690)
+    
+                                        Checkvar12 = IntVar(m)
+                                        c12 = Checkbutton(m, text = "4",variable = Checkvar12, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                        c12.place(x=300,y=760)
+                    
+                                        def submit8(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5,clr_fg_6,clr_fg_7):
+                                            A8= str(Checkvar9.get())
+                                            B8= str(Checkvar10.get())
+                                            C8= str(Checkvar11.get())
+                                            D8= str(Checkvar12.get())
+    
+                                            if (A8=="1" and B8=="0" and C8=="0" and D8=="1"):
+                                                score_m+=4
+                                                c_m+=1
+                                                clr_fg_8="green2"            
+                                            elif (A8=="0" and B8=="0" and C8=="0" and D8=="0") :
+                                                score_m+=0
+                                                n_m+=1
+                                                clr_fg_8="gray73"
+                                                A8="N.A."
+            
+                                            else:
+                                                score_m-=1
+                                                i_m+=1
+                                                clr_fg_8="orangered"
+                                            if A8=="1" and B8=="0" and C8=="0" and D8=="0":
+                                                A8="A"
+                                            elif A8=="0" and B8=="1" and C8=="0" and D8=="0":
+                                                A8="B"
+                                            elif A8=="0" and B8=="0" and C8=="1" and D8=="0":
+                                                A8="C"
+                                            elif A8=="0" and B8=="0" and C8=="0" and D8=="1":
+                                                A8="D"
+                                            elif A8=="1" and B8=="1" and C8=="0" and D8=="0":
+                                                A8="A,B"
+                                            elif A8=="1" and B8=="0" and C8=="1" and D8=="0":
+                                                A8="A,C"
+                                            elif A8=="1" and B8=="0" and C8=="0" and D8=="1":
+                                                A8="A,D"
+                                            elif A8=="0" and B8=="1" and C8=="1" and D8=="0":
+                                                A8="B,C"    
+                                            elif A8=="0" and B8=="1" and C8=="0" and D8=="1":
+                                                A8="B,D"
+                                            elif A8=="0" and B8=="0" and C8=="1" and D8=="1":
+                                                A8="C,D"
+                                            elif A8=="1" and B8=="1" and C8=="1" and D8=="0":
+                                                A8="A,B,C"
+                                            elif A8=="1" and B8=="1" and C8=="0" and D8=="1":
+                                                A8="A,B,D"
+                                            elif A8=="1" and B8=="0" and C8=="1" and D8=="1":
+                                                A8="A,C,D"
+                                            elif A8=="0" and B8=="1" and C8=="1" and D8=="1":
+                                                A8="B,C,D"
+                                            elif A8=="1" and B8=="1" and C8=="1" and D8=="1":
+                                                A8="A,B,C,D"
+                                            else:
+                                                A8="N.A."
+                                                
+                                            l25.destroy()
+                                            l26.destroy()
+                                            q8a.destroy()
+                                            q8b.destroy()
+                                            q8c.destroy()
+                                            c9.destroy()
+                                            c10.destroy()
+                                            c11.destroy()
+                                            c12.destroy()
+                                            b12.destroy()
+                                            l27 =Label(m,text="Question 9 ",font=('Times New Roman',10),bg="deep sky blue")
+                                            l27.pack()
+                                            l28= Label(m,text="Which list slicing reverses the list 'numbers'?",font=('Times New Roman',8),bg="deep sky blue")
+                                            l28.pack()
+                                            Checkvar13 = IntVar(m)
+                                            c13 = Checkbutton(m, text = "numbers[-1::]",variable = Checkvar13, onvalue = 1, offvalue =0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                            c13.place(x=300,y=300)
+    
+                                            Checkvar14 = IntVar(m)
+                                            c14 = Checkbutton(m, text = "numbers[::]",variable = Checkvar14, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                            c14.place(x=300,y=370)
+        
+                                            Checkvar15 = IntVar(m)
+                                            c15 = Checkbutton(m, text ="numbers[::-1]",variable = Checkvar15, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                            c15.place(x=300,y=440)
+        
+                                            Checkvar16 = IntVar(m)
+                                            c16 = Checkbutton(m, text = "numbers[-1::-1]",variable = Checkvar16, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                            c16.place(x=300,y=510)
+                        
+                                            def submit9(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5,clr_fg_6,clr_fg_7,clr_fg_8):
+                                                A9= str(Checkvar13.get())
+                                                B9= str(Checkvar14.get())
+                                                C9= str(Checkvar15.get())
+                                                D9= str(Checkvar16.get())
+        
+                                                if (A9=="0" and B9=="0" and C9=="1" and D9=="1"):
+                                                    score_m+=4
+                                                    c_m+=1
+                                                    clr_fg_9="green2"                
+                                                elif (A9=="0" and B9=="0" and C9=="0" and D9=="0") :
+                                                    score_m+=0
+                                                    n_m+=1 
+                                                    clr_fg_9="gray73"  
+                                                    A9="N.A."             
+                                                else:
+                                                    score_m-=1
+                                                    i_m+=1
+                                                    clr_fg_9="orangered"
+                                                if A9=="1" and B9=="0" and C9=="0" and D9=="0":
+                                                    A9="A"
+                                                elif A9=="0" and B9=="1" and C9=="0" and D9=="0":
+                                                    A9="B"
+                                                elif A9=="0" and B9=="0" and C9=="1" and D9=="0":
+                                                    A9="C"
+                                                elif A9=="0" and B9=="0" and C9=="0" and D9=="1":
+                                                    A9="D"
+                                                elif A9=="1" and B9=="1" and C9=="0" and D9=="0":
+                                                    A9="A,B"
+                                                elif A9=="1" and B9=="0" and C9=="1" and D9=="0":
+                                                    A9="A,C"
+                                                elif A9=="1" and B9=="0" and C9=="0" and D9=="1":
+                                                    A9="A,D"
+                                                elif A9=="0" and B9=="1" and C9=="1" and D9=="0":
+                                                    A9="B,C"    
+                                                elif A9=="0" and B9=="1" and C9=="0" and D9=="1":
+                                                    A9="B,D"
+                                                elif A9=="0" and B9=="0" and C9=="1" and D9=="1":
+                                                    A9="C,D"
+                                                elif A9=="1" and B9=="1" and C9=="1" and D9=="0":
+                                                    A9="A,B,C"
+                                                elif A9=="1" and B9=="1" and C9=="0" and D9=="1":
+                                                    A9="A,B,D"
+                                                elif A9=="1" and B9=="0" and C9=="1" and D9=="1":
+                                                    A9="A,C,D"
+                                                elif A9=="0" and B9=="1" and C9=="1" and D9=="1":
+                                                    A9="B,C,D"
+                                                elif A9=="1" and B9=="1" and C9=="1" and D9=="1":
+                                                    A9="A,B,C,D"
+                                                else:
+                                                    A9="N.A."
+                                                    
+                                                l27.destroy()
+                                                l28.destroy()
+                                                c13.destroy()
+                                                c14.destroy()
+                                                c15.destroy()
+                                                c16.destroy()
+                                                b13.destroy()
+                                                
+                                                l29 =Label(m,text="Question 10 ",font=('Times New Roman',10),bg="deep sky blue")
+                                                l29.pack()
+                                                l30 = Label(m,text="Which of the following is/are the elements ",font=('Times New Roman',8),bg="deep sky blue")
+                                                l30.pack()
+                                                l= Label(m,text="of the list in output",font=('Times New Roman',8),bg="deep sky blue")
+                                                l.pack()
+                                                q10a=Label(m,text="nums={1,2,3,4,5,6}",font=('Times New Roman',8),bg="deep sky blue")
+                                                q10b=Label(m,text="nums={0,1,2,3} & nums",font=('Times New Roman',8),bg="deep sky blue")
+                                                q10c=Label(m,text="nums= filter(lambda x: x>1,nums)",font=('Times New Roman',8),bg="deep sky blue")
+                                                q10d=Label(m,text="print(list(nums))",font=('Times New Roman',8),bg="deep sky blue")
+                                                q10a.place(x=200,y=350)
+                                                q10b.place(x=200,y=410)
+                                                q10c.place(x=200,y=470)
+                                                q10d.place(x=200,y=530)
+                                                Checkvar17 = IntVar(m)
+                                                c17 = Checkbutton(m, text = "4",variable = Checkvar17, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                                c17.place(x=300,y=650)
+        
+                                                Checkvar18 = IntVar(m)
+                                                c18 = Checkbutton(m, text = "3",variable = Checkvar18, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                                c18.place(x=300,y=720)
+            
+                                                Checkvar19 = IntVar(m)
+                                                c19 = Checkbutton(m, text = "2",variable = Checkvar19, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                                c19.place(x=300,y=790)
+            
+                                                Checkvar20 = IntVar(m)
+                                                c20 = Checkbutton(m, text = "5",variable = Checkvar20, onvalue = 1, offvalue = 0,font=('Times New Roman',8),bg="deep sky blue",activebackground="gold")
+                                                c20.place(x=300,y=860)
+                            
+                                                def submit10(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5,clr_fg_6,clr_fg_7,clr_fg_8,clr_fg_9):
+                                                    A10= str(Checkvar17.get())
+                                                    B10= str(Checkvar18.get())
+                                                    C10= str(Checkvar19.get())
+                                                    D10= str(Checkvar20.get())
+            
+                                                    if (A10=="0" and B10=="1" and C10=="1" and D10=="0"):
+                                                        score_m+=4
+                                                        c_m+=1
+                                                        clr_fg_10="green2"                    
+                                                    elif (A10=="0" and B10=="0" and C10=="0" and D10=="0") :
+                                                        score_m+=0
+                                                        n_m+=1
+                                                        clr_fg_10="gray73"
+                                                        A10="N.A."                    
+                                                    else:
+                                                        score_m-=1
+                                                        i_m+=1
+                                                        clr_fg_10="orangered"
+                                                    if A10=="1" and B10=="0" and C10=="0" and D10=="0":
+                                                        A10="A"
+                                                    elif A10=="0" and B10=="1" and C10=="0" and D10=="0":
+                                                        A10="B"
+                                                    elif A10=="0" and B10=="0" and C10=="1" and D10=="0":
+                                                        A10="C"
+                                                    elif A10=="0" and B10=="0" and C10=="0" and D10=="1":
+                                                        A10="D"
+                                                    elif A10=="1" and B10=="1" and C10=="0" and D10=="0":
+                                                        A10="A,B"
+                                                    elif A10=="1" and B10=="0" and C10=="1" and D10=="0":
+                                                        A10="A,C"
+                                                    elif A10=="1" and B10=="0" and C10=="0" and D10=="1":
+                                                        A10="A,D"
+                                                    elif A10=="0" and B10=="1" and C10=="1" and D10=="0":
+                                                        A10="B,C"    
+                                                    elif A10=="0" and B10=="1" and C10=="0" and D10=="1":
+                                                        A10="B,D"
+                                                    elif A10=="0" and B10=="0" and C10=="1" and D10=="1":
+                                                        A10="C,D"
+                                                    elif A10=="1" and B10=="1" and C10=="1" and D10=="0":
+                                                        A10="A,B,C"
+                                                    elif A10=="1" and B10=="1" and C10=="0" and D10=="1":
+                                                        A10="A,B,D"
+                                                    elif A10=="1" and B10=="0" and C10=="1" and D10=="1":
+                                                        A10="A,C,D"
+                                                    elif A10=="0" and B10=="1" and C10=="1" and D10=="1":
+                                                        A10="B,C,D"
+                                                    elif A10=="1" and B10=="1" and C10=="1" and D10=="1":
+                                                        A10="A,B,C,D"
+                                                    else:
+                                                        A10="N.A."
+                                                    l29.destroy()
+                                                    l30.destroy()
+                                                    l20.destroy()
+                                                    l.destroy()
+                                                    q10a.destroy()
+                                                    q10b.destroy()
+                                                    q10c.destroy()
+                                                    q10d.destroy()       
+                                                    c17.destroy()
+                                                    c18.destroy()
+                                                    c19.destroy()
+                                                    c20.destroy()
+                                                    b14.destroy()
+                                                    progress = Progressbar(m, orient = HORIZONTAL,length = 100, mode = 'determinate') 
+                                                    def res(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5,clr_fg_6,clr_fg_7,clr_fg_8,clr_fg_9,clr_fg_10):
+                                                        l31=Label(m,text="Calculating scores...",font=('Times New Roman',10),bg="deep sky blue")
+                                                        l31.pack()
+                                                        progress['value'] = 20
+                                                        m.update_idletasks()
+                                                        time.sleep(0.1)
+                                                        progress['value'] = 40
+                                                        m.update_idletasks() 
+                                                        time.sleep(0.1) 
+                                                        progress['value'] = 60
+                                                        m.update_idletasks() 
+                                                        time.sleep(0.1) 
+                                                        progress['value'] = 80
+                                                        m.update_idletasks() 
+                                                        time.sleep(0.1) 
+                                                        progress['value'] = 100
+                                                        progress.destroy()
+                                                        b15.destroy()
+                                                        l31.destroy()
+                                                        
+                                                        l32=Label(m,text="Performance Report",font=('dancing script',18),bg="deep sky blue")
+                                                        l32.pack()
+                                                        c = c_s + c_m
+                                                        i = i_s + i_m
+                                                        n = n_s + n_m
+                                                        a = i + c
+                                                        tot = c + n + i
+                                                        score = score_s +score_m
+                                                        per = (score/40)*100
+                                                        try:
+                                                            acc = 100-((i/c)*100)
+                                                        except :
+                                                            acc=0
+                                                        per_s = (score_s/20)*100
+                                                        try :
+                                                            acc_s = 100-((i_s/c_s)*100)
+                                                        except :
+                                                            acc_s=0
+                                                        per_m = (score_m/20)*100
+                                                        try :
+                                                            acc_m = 100-((i_m/c_m)*100)
+                                                        except:
+                                                            acc_m=0
+                                                        l33=Label(m,text="Name :-",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l33.place(x=0,y=150)
+                                                        l34=Label(m,text=nname,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l34.place(x=180,y=150)
+                                                        l35=Label(m,text="Age :-",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l35.place(x=0,y=250)
+                                                        l36=Label(m,text=aage,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l36.place(x=130,y=250)
+                                                        l37=Label(m,text="Gender :-",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l37.place(x=300,y=250)
+                                                        l38=Label(m,text=gender,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l38.place(x=520,y=250)
+                                                        l39=Label(m,text="★ Your total score is",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l39.place(x=0,y=350)
+                                                        l40=Label(m,text=score,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l40.place(x=460,y=350)
+                                                        l41=Label(m,text="★ Total correct answers  ",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l41.place(x=0,y=450)
+                                                        l42=Label(m,text=c,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l42.place(x=530,y=450)
+                                                        l43=Label(m,text="★ Total incorrect answers ",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l43.place(x=0,y=550)
+                                                        l44=Label(m,text=i,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l44.place(x=570,y=550)
+                                                        l45=Label(m,text="★ Not attempted ",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l45.place(x=0,y=650)
+                                                        l46=Label(m,text=n,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l46.place(x=385,y=650)
+                                                        l47=Label(m,text="★ Percentage ",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l47.place(x=0,y=750)
+                                                        l48=Label(m,text=per,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l48.place(x=320,y=750)
+                                                        l49=Label(m,text="★ Accuracy ",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l49.place(x=0,y=850)
+                                                        l50=Label(m,text=acc,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l50.place(x=280,y=850)
+                                                        l51=Label(m,text="★ Individual scores:-",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l51.place(x=0,y=950)
+                                                        l52=Label(m,text="Single Correct ",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l52.place(x=150,y=1010)
+                                                        l53=Label(m,text="Score",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l53.place(x=300,y=1070)
+                                                        l54=Label(m,text=score_s,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l54.place(x=700,y=1070)
+                                                        l55=Label(m,text="Correct answers ",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l55.place(x=300,y=1130)
+                                                        l56=Label(m,text=c_s,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l56.place(x=700,y=1130)
+                                                        l57=Label(m,text="Incorrect answers",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l57.place(x=300,y=1190)
+                                                        l58=Label(m,text=i_s,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l58.place(x=700,y=1190)
+                                                        l59=Label(m,text="Not attempted",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l59.place(x=300,y=1250)
+                                                        l60=Label(m,text=n_s,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l60.place(x=700,y=1250)
+                                                        l61=Label(m,text="Percentage",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l61.place(x=300,y=1310)
+                                                        l62=Label(m,text=per_s,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l62.place(x=700,y=1310)
+                                                        l63=Label(m,text="Accuracy",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l63.place(x=300,y=1370)
+                                                        l64=Label(m,text=acc_s,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l64.place(x=700,y=1370)
+                                                        l65=Label(m,text="Multiple Correct ",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l65.place(x=150,y=1430)
+                                                        l66=Label(m,text="Score",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l66.place(x=300,y=1490)
+                                                        l67=Label(m,text=score_m,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l67.place(x=700,y=1490)
+                                                        l68=Label(m,text="Correct answers ",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l68.place(x=300,y=1550)
+                                                        l69=Label(m,text=c_m,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l69.place(x=700,y=1550)
+                                                        l70=Label(m,text="Incorrect answers",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l70.place(x=300,y=1610)
+                                                        l71=Label(m,text=i_m,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l71.place(x=700,y=1610)
+                                                        l72=Label(m,text="Not attempted",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l72.place(x=300,y=1670)
+                                                        l73=Label(m,text=n_m,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l73.place(x=700,y=1670)
+                                                        l74=Label(m,text="Percentage",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l74.place(x=300,y=1730)
+                                                        l75=Label(m,text=per_m,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l75.place(x=700,y=1730)
+                                                        l76=Label(m,text="Accuracy",font=('Times New Roman',8),bg="deep sky blue")
+                                                        l76.place(x=300,y=1790)
+                                                        l77=Label(m,text=acc_m,font=('Times New Roman',8),bg="deep sky blue")
+                                                        l77.place(x=700,y=1790)
+                                                        def ques(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5,clr_fg_6,clr_fg_7,clr_fg_8,clr_fg_9,clr_fg_10):
+                                                            b16.destroy()
+                                                            l32.destroy()
+                                                            l33.destroy() 
+                                                            l34.destroy()
+                                                            l35.destroy()
+                                                            l36.destroy()
+                                                            l37.destroy()
+                                                            l38.destroy() 
+                                                            l39.destroy()
+                                                            l40.destroy()
+                                                            l41.destroy()
+                                                            l42.destroy()
+                                                            l43.destroy() 
+                                                            l44.destroy()
+                                                            l45.destroy()
+                                                            l46.destroy()
+                                                            l47.destroy()
+                                                            l48.destroy() 
+                                                            l49.destroy()
+                                                            l50.destroy()
+                                                            l51.destroy()
+                                                            l52.destroy()
+                                                            l53.destroy() 
+                                                            l54.destroy()
+                                                            l55.destroy()
+                                                            l56.destroy()
+                                                            l57.destroy()
+                                                            l58.destroy() 
+                                                            l59.destroy()
+                                                            l60.destroy()
+                                                            l61.destroy()
+                                                            l62.destroy()
+                                                            l63.destroy() 
+                                                            l64.destroy()
+                                                            l65.destroy()
+                                                            l66.destroy()
+                                                            l67.destroy()
+                                                            l68.destroy() 
+                                                            l69.destroy()
+                                                            l70.destroy()
+                                                            l71.destroy()
+                                                            l72.destroy()
+                                                            l73.destroy()
+                                                            l74.destroy()
+                                                            l75.destroy()
+                                                            l76.destroy()
+                                                            l77.destroy()
+                                                            l78=Label(m,text="Question",bg="deep sky blue",font=("Times New Roman",8))
+                                                            l78.place(x=50,y=20)
+                                                            l79=Label(m,text="Your Answer",bg="deep sky blue",font=("Times New Roman",8))
+                                                            l79.place(x=350,y=20)
+                                                            l80=Label(m,text="Correct Answer",bg="deep sky blue",font=("Times New Roman",8))
+                                                            l80.place(x=700,y=20)
+                                                            l81= Label(m,text= "1",font=("Times New Roman",8),bg=clr_fg_1,fg="black",width=5)
+                                                            l81.place(x=100,y=120)
+                                                            l82= Label(m,text= "2",font=("Times New Roman",8),bg=clr_fg_2,fg="black",width=5)
+                                                            l82.place(x=100,y=220)
+                                                            l83= Label(m,text= "3",font=("Times New Roman",8),bg=clr_fg_3,fg="black",width=5)
+                                                            l83.place(x=100,y=320)
+                                                            l84= Label(m,text= "4",font=("Times New Roman",8),bg=clr_fg_4,fg="black",width=5)
+                                                            l84.place(x=100,y=420)
+                                                            l85= Label(m,text= "5",font=("Times New Roman",8),bg=clr_fg_5,fg="black",width=5)
+                                                            l85.place(x=100,y=520)
+                                                            l86= Label(m,text= "6",font=("Times New Roman",8),bg=clr_fg_6,fg="black",width=5)
+                                                            l86.place(x=100,y=620)
+                                                            l87= Label(m,text= "7",font=("Times New Roman",8),bg=clr_fg_7,fg="black",width=5)
+                                                            l87.place(x=100,y=720)
+                                                            l88= Label(m,text= "8",font=("Times New Roman",8),bg=clr_fg_8,fg="black",width=5)
+                                                            l88.place(x=100,y=820)
+                                                            l89= Label(m,text= "9",font=("Times New Roman",8),bg=clr_fg_9,fg="black",width=5)
+                                                            l89.place(x=100,y=920)
+                                                            l90= Label(m,text= "10",font=("Times New Roman",8),bg=clr_fg_10,fg="black",width=5)
+                                                            l90.place(x=100,y=1020)
+                                                            l91=Label(m,text=a1,font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l91.place(x=420,y=120)
+                                                            l92=Label(m,text=a2,font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l92.place(x=420,y=220)
+                                                            l93=Label(m,text=a3,font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l93.place(x=420,y=320)
+                                                            l94=Label(m,text=a4,font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l94.place(x=420,y=420)
+                                                            l95=Label(m,text=a5,font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l95.place(x=420,y=520)
+                                                            l96=Label(m,text=A6,font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l96.place(x=420,y=620)
+                                                            l97=Label(m,text=A7,font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l97.place(x=420,y=720)
+                                                            l98=Label(m,text=A8,font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l98.place(x=420,y=820)
+                                                            l99=Label(m,text=A9,font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l99.place(x=420,y=920)
+                                                            l100=Label(m,text=A10,font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l100.place(x=420,y=1020)
+                                                            l101=Label(m,text="C",font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l101.place(x=820,y=120)
+                                                            l102=Label(m,text="C",font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l102.place(x=820,y=220)
+                                                            l103=Label(m,text="C",font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l103.place(x=820,y=320)
+                                                            l104=Label(m,text="C",font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l94.place(x=820,y=420)
+                                                            l105=Label(m,text="C",font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l105.place(x=820,y=520)
+                                                            l106=Label(m,text="B,C",font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l106.place(x=420,y=620)
+                                                            l107=Label(m,text="B,C",font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l107.place(x=820,y=720)
+                                                            l108=Label(m,text="B,C",font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l108.place(x=820,y=820)
+                                                            l109=Label(m,text="B,C",font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l109.place(x=820,y=920)
+                                                            l110=Label(m,text="B,C",font=("Times New Roman",8),bg="deep sky blue",fg="black")
+                                                            l110.place(x=820,y=1020)
+                                                            
+                                                            
+                                                            def pic(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,c,i,n,a,score,tot,per,acc,per_s,per_m,acc_s,acc_m):
+                                                                canvas1 = tk.Canvas(m, width = 20000, height = 20000,bg="deep sky blue")
+                                                                canvas1.pack()  
+      
+                                                      
+                                                                Label(m,text="★ Total Questions").place(x=100,y=0)
+                                                                Label(m,text="★ Score").place(x=700,y=0)
+                                                                Label(m,text="★ Percentage").place(x=100,y=600)
+                                                                Label(m,text="★ Accuracy").place(x=700,y=600)
+                                                                Label(m,text="★ Single correct").place(x=100,y=1200)
+                                                                Label(m,text="★ Multiple Correct").place(x=700,y=1200)
+                                                                fig1 = Figure(figsize=(5,4), dpi=100) 
+                                                                subplot1 = fig1.add_subplot(111) 
+                                                                labels1 = 'Correct', 'Incorrect', 'Not attempted' 
+                                                                pieSizes1 = [c,i,n]
+                                                                explode1 = (0.1, 0.1, 0.1)  
+                                                                subplot1.pie(pieSizes1, explode=explode1, labels=labels1, autopct='%1.1f%%', shadow=True, startangle=90) 
+                                                                subplot1.axis('equal')  
+                                                                pie1 = FigureCanvasTkAgg(fig1, m) 
+                                                                pie1.get_tk_widget().place(x=0,y=60)
+                                                                   
+                                                                fig2 = Figure(figsize=(5,4), dpi=100) 
+                                                                subplot2= fig2.add_subplot(111) 
+                                                                labels2 = 'Single', 'Multiple' 
+                                                                pieSizes2 = [score_s,score_m]
+                                                                explode2 = (0.1, 0.1)
+                                                                subplot2.pie(pieSizes2, explode=explode2, labels=labels2, autopct='%1.1f%%', shadow=True, startangle=90) 
+                                                                subplot1.axis('equal') 
+                                                                pie2 = FigureCanvasTkAgg(fig2, m) 
+                                                                pie2.get_tk_widget().place(x=600,y=60)
+                                                                fig3= Figure(figsize=(5,4), dpi=100) 
+                                                                subplot3 = fig3.add_subplot(111) 
+                                                                labels3 = 'Single', 'Multiple', 
+                                                                pieSizes3 = [per_s,per_m]
+                                                                explode3 = (0.1, 0.1)  
+                                                                subplot3.pie(pieSizes3, explode=explode3, labels=labels3, autopct='%1.1f%%', shadow=True, startangle=90) 
+                                                                subplot3.axis('equal')  
+                                                                pie3 = FigureCanvasTkAgg(fig3, m) 
+                                                                pie3.get_tk_widget().place(x=0,y=660)
+                                                                   
+                                                                fig4 = Figure(figsize=(5,4), dpi=100) 
+                                                                subplot4= fig4.add_subplot(111) 
+                                                                labels4 = 'Single', 'Multiple' 
+                                                                pieSizes4 = [acc_s,acc_m]
+                                                                explode4 = (0.1, 0.1)
+                                                                subplot4.pie(pieSizes4, explode=explode4, labels=labels4, autopct='%1.1f%%', shadow=True, startangle=90) 
+                                                                subplot4.axis('equal') 
+                                                                pie4 = FigureCanvasTkAgg(fig4, m) 
+                                                                pie4.get_tk_widget().place(x=600,y=660)
+                                                                fig5= Figure(figsize=(5,4), dpi=100) 
+                                                                subplot5 = fig5.add_subplot(111) 
+                                                                labels5 = 'Correct','Incorrect','Not Attempted'
+                                                                pieSizes5 = [c_s,i_s,n_s]
+                                                                explode5 = (0.1, 0.1,0.1)  
+                                                                subplot5.pie(pieSizes5, explode=explode5, labels=labels5, autopct='%1.1f%%', shadow=True, startangle=90) 
+                                                                subplot5.axis('equal')  
+                                                                pie5 = FigureCanvasTkAgg(fig5, m) 
+                                                                pie5.get_tk_widget().place(x=0,y=1260)
+                                                                   
+                                                                fig6 = Figure(figsize=(5,4), dpi=100) 
+                                                                subplot6 = fig6.add_subplot(111) 
+                                                                labels6 = 'Correct','Incorrect','Not Attempted'
+                                                                pieSizes6 = [c_m,i_m,n_m]
+                                                                explode6 = (0.1, 0.1,0.1)
+                                                                subplot6.pie(pieSizes6, explode=explode6, labels=labels6, autopct='%1.1f%%', shadow=True, startangle=90) 
+                                                                subplot6.axis('equal') 
+                                                                pie6 = FigureCanvasTkAgg(fig6, m) 
+                                                                pie6.get_tk_widget().place(x=600,y=1260)
+    
+                                                                   
+                                                            b17=Button(m,text="Pictorial Analysis",command= lambda : pic(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,c,i,n,a,score,tot,per,acc,per_s,per_m,acc_s,acc_m))
+                                                            b17.place(x=400,y=1150)
+                                                        b16=Button(m,text="Question Analysis",command= lambda : ques(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5,clr_fg_6,clr_fg_7,clr_fg_8,clr_fg_9,clr_fg_10))
+                                                        b16.place(x=600,y=200)
+                                                                              
+                                                    progress.pack(pady = 10)
+                                                    b15=Button(m, text = 'View Result', command = lambda : res(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5,clr_fg_6,clr_fg_7,clr_fg_8,clr_fg_9,clr_fg_10),font=('Times New Roman',10))
+                                                    b15.pack(pady = 10) 
+
+                                                b14 = Button(m,text="Next",command= lambda : submit10(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5,clr_fg_6,clr_fg_7,clr_fg_8,clr_fg_9),font=('Times New Roman',10))
+                                                b14.pack()                            
+                                                
+                                            b13 = Button(m,text="Next",command= lambda : submit9(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5,clr_fg_6,clr_fg_7,clr_fg_8),font=('Times New Roman',10))
+                                            b13.pack()  
+                                        b12 = Button(m,text="Next",command= lambda : submit8(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5,clr_fg_6,clr_fg_7),font=('Times New Roman',10))
+                                        b12.pack()                                    
+
+                                                                                
+                                    b11 = Button(m,text="Next",command= lambda : submit7(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5,clr_fg_6),font=('Times New Roman',10))
+                                    b11.pack()          
+
+
+                                b10 = Button(m,text="Next",command= lambda : submit6(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4,clr_fg_5),font=('Times New Roman',10))
+                                b10.pack()                          
+
+
+                            b9=Button(m,text="Next", command= lambda : submit5(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3,clr_fg_4),font=('Times New Roman',10))
+                            b9.pack()
+
+
+                        b8=Button(m,text="next",command= lambda : submit4(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2,clr_fg_3),font=('Times New Roman',10))
+                        b8.pack()        
+
+                                        
+                    b7 =Button(m,text="next",command= lambda : submit3(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1,clr_fg_2),font=('Times New Roman',10))
+                    b7.pack()
+
+                
+                b6 =Button(m,text="next",command= lambda : submit2(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m,clr_fg_1),font=('Times New Roman',10))
+                b6.pack()                        
+                    
+                    
+            b5=Button(m,text="next",command= lambda : submit1(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m),font=('Times New Roman',10))
+            b5.pack()
+
+            
+        b4=Button(m,text="start",command= lambda : start(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m),font=('Times New Roman',10))
+        b4.pack()
+
+           
+    b2=Button(m,text="Submit",command= lambda : submit(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m),font=('Times New Roman',10))
+    b2.place(x=400,y=800)
+    b3=Button(m,text="Quit",command= m.destroy,font=('Times New Roman',10))
+    b3.place(x=440,y=1000)
+
+
+b1=Button(m,text="Next",command= lambda : next(c_s,c_m,i_s,i_m,n_s,n_m,score_s,score_m),font=('Times New Roman',10))
+b1.place(x=450,y=500)
+
+m.mainloop()
